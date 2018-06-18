@@ -1,1 +1,6 @@
-/_gg/
+.DS_Store
+*~
+.import/
+logs/
+
+_builds/
