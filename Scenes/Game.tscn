@@ -32,7 +32,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=5]
 
 resource_name = "Land"
-length = 0.5
+length = 0.2
 loop = false
 step = 0.1
 tracks/0/type = "value"
@@ -42,10 +42,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 6, 7, 0, 4, 0 ]
+"values": [ 0, 4 ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -102,7 +102,7 @@ shape = SubResource( 3 )
 [node name="Floor3" type="StaticBody2D" parent="." index="2"]
 
 editor/display_folded = true
-position = Vector2( -50, 50 )
+position = Vector2( -90, 100 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -143,7 +143,6 @@ shape = SubResource( 3 )
 
 [node name="Player" type="KinematicBody2D" parent="." index="4"]
 
-editor/display_folded = true
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -156,7 +155,6 @@ _sections_unfolded = [ "Transform" ]
 texture = ExtResource( 4 )
 vframes = 3
 hframes = 3
-frame = 6
 _sections_unfolded = [ "Animation" ]
 
 [node name="SpriteAnimation" type="AnimationPlayer" parent="Player/PlayerSprite" index="0"]

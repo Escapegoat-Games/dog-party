@@ -1,15 +1,16 @@
-# Controls Player movement
+# Controls Player movement (still spaghet)
 
 extends KinematicBody2D
 
 onready var sprite = $PlayerSprite
 onready var sprite_ani = $PlayerSprite/SpriteAnimation
+onready var collision = $CollisionShape2D
 
 var walk_speed = 50
 var jump_speed = 2
 var y_velocity = 0
 var touching_ground = false
-var is_play_land = false
+var land_cooldown
 
 const gravity = 0.1
 
@@ -17,23 +18,29 @@ enum State {
 	IDLE,
 	WALK,
 	JUMP,
-	LAND,
 }
 var state = State.IDLE
 
 func _ready():
-	pass
+	land_cooldown = sprite_ani.get_animation("Land").length
 
 func _physics_process(delta):
 	
 	# raycast for ground
 	var space_state = get_world_2d().direct_space_state
-	var result = space_state.intersect_ray(
-		global_position,
-		global_position+Vector2(0, 15),
+	var front_vec = global_position+Vector2(collision.shape.extents.x, 0)
+	var front_raycast = space_state.intersect_ray(
+		front_vec,
+		front_vec+Vector2(0, 11),
 		[self]
 	)
-	touching_ground = result.has("rid")
+	var back_vec = global_position+Vector2(-collision.shape.extents.x, 0)
+	var back_raycast = space_state.intersect_ray(
+		back_vec,
+		back_vec+Vector2(0, 11),
+		[self]
+	)
+	touching_ground = front_raycast.size() > 0 or back_raycast.size() > 0
 	
 	# apply physics
 	move_and_collide(Vector2(0, y_velocity))
@@ -42,8 +49,20 @@ func _physics_process(delta):
 		y_velocity = 0
 	else:
 		y_velocity += gravity
+	
+	# pixel perfect?
+	sprite.global_position = Vector2(int(global_position.x), int(global_position.y))
 
 func _process(delta):
+	
+	# cool downs
+	if land_cooldown >= 0:
+		land_cooldown -= delta
+	
+	handle_controls()
+	handle_animation()
+	
+func handle_controls():
 	
 	if touching_ground:
 		state = State.IDLE
@@ -68,16 +87,18 @@ func _process(delta):
 	if Input.is_action_pressed("jump") and touching_ground:
 		y_velocity = -jump_speed
 		state = State.JUMP
-	
-	#print(touching_ground, state)
+
+func handle_animation():
 	
 	# animation
-	if state == State.IDLE:
+	if state == State.IDLE and land_cooldown <= 0:
 		sprite_ani.stop()
 		sprite.frame = 0
-	elif state == State.WALK and not sprite_ani.is_playing():
+	if state == State.WALK and not sprite_ani.is_playing():
 		sprite_ani.play("Walking")
 	elif state == State.JUMP:
 		sprite.frame = 5
-	elif state == State.LAND:
-		sprite_ani.play("Land")
+		
+		if y_velocity > 1:
+			sprite_ani.play("Land")
+			land_cooldown = sprite_ani.get_animation("Land").length
