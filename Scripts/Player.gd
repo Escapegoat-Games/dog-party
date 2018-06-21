@@ -7,7 +7,7 @@ onready var sprite_ani = $PlayerSprite/SpriteAnimation
 onready var collision = $CollisionShape2D
 
 var walk_speed = 50
-var jump_speed = 2
+var jump_speed = 3
 var y_velocity = 0
 var touching_ground = false
 var land_cooldown
@@ -32,13 +32,15 @@ func _physics_process(delta):
 	var front_raycast = space_state.intersect_ray(
 		front_vec,
 		front_vec+Vector2(0, 11),
-		[self]
+		[self],
+		1
 	)
 	var back_vec = global_position+Vector2(-collision.shape.extents.x, 0)
 	var back_raycast = space_state.intersect_ray(
 		back_vec,
 		back_vec+Vector2(0, 11),
-		[self]
+		[self],
+		1
 	)
 	touching_ground = front_raycast.size() > 0 or back_raycast.size() > 0
 	

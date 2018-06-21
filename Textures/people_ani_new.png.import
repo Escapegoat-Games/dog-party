@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Image20000.png-b717261d901214ef2561fe72c467c2b0.stex"
+path="res://.import/people_ani_new.png-974c6b7764fba25ddd3cd556050e775b.stex"
 
 [deps]
 
-source_file="res://Textures/Image20000.png"
-dest_files=[ "res://.import/Image20000.png-b717261d901214ef2561fe72c467c2b0.stex" ]
+source_file="res://Textures/people_ani_new.png"
+dest_files=[ "res://.import/people_ani_new.png-974c6b7764fba25ddd3cd556050e775b.stex" ]
 
 [params]
 
