@@ -65,7 +65,7 @@ func _process(delta):
 	handle_animation()
 	
 func handle_controls():
-	
+	# set up default idle state
 	if touching_ground:
 		state = State.IDLE
 	
