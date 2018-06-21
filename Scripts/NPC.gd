@@ -42,9 +42,9 @@ func _process(delta):
 				player_beg_phase = 1
 				player_beg_cooldown = 1
 			elif player_beg_phase == 1 && Input.is_action_just_pressed("move_right"):
-				player_beg_phase = 1
 				# get a point
-				print("get poitn")
+				player_beg_phase = 1
+				GameManager.player_points += 1
 				particles.emitting = true
 				player_beg_cooldown = 1
 				
