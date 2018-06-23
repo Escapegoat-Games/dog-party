@@ -3,7 +3,7 @@ extends CanvasLayer
 onready var score_label = $GUI/VBoxContainer/Score
 
 func _ready():
-	score_label.get_font("font").create_from_fnt("res://Font/ubuntu.fnt")
+	score_label.get_font("font").create_from_fnt("res://Font/custom.fnt")
 	pass
 
 func _process(delta):

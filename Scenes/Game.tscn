@@ -4,7 +4,7 @@
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
 [ext_resource path="res://Textures/dog_ani.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/HUD.gd" type="Script" id=4]
-[ext_resource path="res://bg_tiles.tres" type="TileSet" id=5]
+[ext_resource path="res://Textures/bg_tiles.tres" type="TileSet" id=5]
 
 [sub_resource type="Animation" id=1]
 
@@ -179,7 +179,6 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="HUD" type="CanvasLayer" parent="." index="4"]
 
-editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
