@@ -28,17 +28,17 @@ func _physics_process(delta):
 	
 	# raycast for ground
 	var space_state = get_world_2d().direct_space_state
-	var front_vec = global_position+Vector2(collision.shape.extents.x, 0)
+	var front_vec = global_position+Vector2(collision.shape.extents.x+collision.position.x, 0)
 	var front_raycast = space_state.intersect_ray(
 		front_vec,
-		front_vec+Vector2(0, 11),
+		front_vec+Vector2(0, 13),
 		[self],
 		1
 	)
-	var back_vec = global_position+Vector2(-collision.shape.extents.x, 0)
+	var back_vec = global_position+Vector2(-collision.shape.extents.x+collision.position.x, 0)
 	var back_raycast = space_state.intersect_ray(
 		back_vec,
-		back_vec+Vector2(0, 11),
+		back_vec+Vector2(0, 13),
 		[self],
 		1
 	)
@@ -53,7 +53,7 @@ func _physics_process(delta):
 		y_velocity += gravity
 	
 	# pixel perfect?
-	sprite.global_position = Vector2(int(global_position.x), int(global_position.y))
+	#sprite.global_position = Vector2(int(global_position.x), int(global_position.y))
 
 func _process(delta):
 	
