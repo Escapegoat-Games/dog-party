@@ -1,0 +1,86 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Textures/bg_tiles.png" type="Texture" id=1]
+
+[node name="Node" type="Node" index="0"]
+
+[node name="UIBoxBL" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 1 )
+vframes = 7
+hframes = 5
+_sections_unfolded = [ "Animation" ]
+
+[node name="UIBoxTL" type="Sprite" parent="." index="1"]
+
+position = Vector2( 40, 0 )
+texture = ExtResource( 1 )
+vframes = 7
+hframes = 5
+frame = 1
+_sections_unfolded = [ "Animation", "Transform" ]
+
+[node name="UIBoxTR" type="Sprite" parent="." index="2"]
+
+position = Vector2( 80, 0 )
+texture = ExtResource( 1 )
+vframes = 7
+hframes = 5
+frame = 2
+_sections_unfolded = [ "Animation", "Transform" ]
+
+[node name="UIBoxBR" type="Sprite" parent="." index="3"]
+
+position = Vector2( 120, 0 )
+texture = ExtResource( 1 )
+vframes = 7
+hframes = 5
+frame = 3
+_sections_unfolded = [ "Animation", "Transform" ]
+
+[node name="UIBoxR" type="Sprite" parent="." index="4"]
+
+position = Vector2( 160, 0 )
+texture = ExtResource( 1 )
+vframes = 7
+hframes = 5
+frame = 4
+_sections_unfolded = [ "Animation", "Transform" ]
+
+[node name="UIBoxB" type="Sprite" parent="." index="5"]
+
+position = Vector2( 0, 40 )
+texture = ExtResource( 1 )
+vframes = 7
+hframes = 5
+frame = 5
+_sections_unfolded = [ "Animation", "Transform" ]
+
+[node name="UIBoxL" type="Sprite" parent="." index="6"]
+
+position = Vector2( 40, 40 )
+texture = ExtResource( 1 )
+vframes = 7
+hframes = 5
+frame = 6
+_sections_unfolded = [ "Animation", "Transform" ]
+
+[node name="UIBoxT" type="Sprite" parent="." index="7"]
+
+position = Vector2( 80, 40 )
+texture = ExtResource( 1 )
+vframes = 7
+hframes = 5
+frame = 7
+_sections_unfolded = [ "Animation", "Transform" ]
+
+[node name="UIBoxMid" type="Sprite" parent="." index="8"]
+
+position = Vector2( 120, 40 )
+texture = ExtResource( 1 )
+vframes = 7
+hframes = 5
+frame = 8
+_sections_unfolded = [ "Animation", "Transform" ]
+
+
