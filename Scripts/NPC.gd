@@ -6,7 +6,10 @@ onready var sprite_ani = $NPCSprite/SpriteAnimation
 onready var interact_area = $InteractArea
 onready var icon = $EmoIcon
 onready var icon_ani = $EmoIcon/IconAnimation
-onready var particles = $Particles2D
+onready var particles = $SparkleParticle
+onready var particles2 = $AwwParticle
+onready var particles3 = $CuteParticle
+onready var particles4 = $HeartParticle
 
 export(int) var sprite_id
 export(float) var activation_chance
@@ -23,7 +26,7 @@ func _ready():
 	idle_ani = "Idle_" + id2name(sprite_id)
 	icon.hide()
 	sprite_ani.play(idle_ani)
-	icon_ani.play("Active")
+	icon_ani.play("ActiveLR")
 
 func _process(delta):
 	
@@ -45,18 +48,24 @@ func _process(delta):
 				# get a point
 				player_beg_phase = 1
 				GameManager.player_points += 1
-				particles.emitting = true
+				toggle_particles(true)
 				player_beg_cooldown = 1
 				
 		if player_beg_cooldown > 0:
 			player_beg_cooldown -= delta
 		else:
-			particles.emitting = false
+			toggle_particles(false)
 		
 		if active_time <= 0:
 			is_active = false
-			particles.emitting = false
+			toggle_particles(false)
 			icon.hide()
+
+func toggle_particles(b):
+	particles.emitting = b
+	particles2.emitting = b
+	particles3.emitting = b
+	particles4.emitting = b
 
 func id2name(id):
 	return String(id/10) + String(id%10)

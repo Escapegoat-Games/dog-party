@@ -1,8 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/NPC.gd" type="Script" id=1]
 [ext_resource path="res://Textures/people_ani_new.png" type="Texture" id=2]
 [ext_resource path="res://Textures/npc_icons.png" type="Texture" id=3]
+[ext_resource path="res://Textures/npc_icons0004.png" type="Texture" id=4]
+[ext_resource path="res://Textures/npc_icons0005.png" type="Texture" id=5]
+[ext_resource path="res://Textures/npc_icons0006.png" type="Texture" id=6]
 
 [sub_resource type="Animation" id=1]
 
@@ -61,14 +64,14 @@ tracks/0/keys = {
 "values": [ 4, 5 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 
-resource_name = "Active"
+resource_name = "ActiveLR"
 length = 0.4
 loop = true
 step = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -77,10 +80,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ Vector2( 0, -30 ), Vector2( 0, -25 ) ]
+"values": [ 7, 8 ]
 }
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=5]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 16 )
@@ -113,7 +116,7 @@ damping = 0.0
 damping_random = 0.0
 angle = 0.0
 angle_random = 1.0
-scale = 1.0
+scale = 2.0
 scale_random = 0.0
 color = Color( 1, 0.992608, 0.526882, 1 )
 hue_variation = 0.0
@@ -123,6 +126,47 @@ anim_speed_random = 0.0
 anim_offset = 0.0
 anim_offset_random = 0.0
 anim_loop = false
+_sections_unfolded = [ "Animation", "Scale" ]
+
+[sub_resource type="ParticlesMaterial" id=7]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 1
+emission_sphere_radius = 20.0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 0.0
+flatness = 0.0
+gravity = Vector3( 0, 10, 0 )
+initial_velocity = 0.0
+initial_velocity_random = 0.0
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 1.0
+scale = 1.0
+scale_random = 0.0
+color = Color( 1, 1, 1, 1 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Animation", "Color" ]
 
 [node name="NPC" type="Node2D" index="0"]
 
@@ -156,12 +200,11 @@ blend_times = [  ]
 
 [node name="EmoIcon" type="Sprite" parent="." index="1"]
 
-editor/display_folded = true
-position = Vector2( 0, -25 )
+position = Vector2( 0, -30 )
 texture = ExtResource( 3 )
-vframes = 2
+vframes = 3
 hframes = 3
-frame = 1
+frame = 8
 _sections_unfolded = [ "Animation", "Transform" ]
 
 [node name="IconAnimation" type="AnimationPlayer" parent="EmoIcon" index="0"]
@@ -171,7 +214,7 @@ autoplay = ""
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/Active = SubResource( 5 )
+anims/ActiveLR = SubResource( 4 )
 blend_times = [  ]
 
 [node name="InteractArea" type="Area2D" parent="." index="2"]
@@ -190,9 +233,9 @@ _sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea" index="0"]
 
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
-[node name="Particles2D" type="Particles2D" parent="." index="3"]
+[node name="SparkleParticle" type="Particles2D" parent="." index="3"]
 
 emitting = false
 amount = 20
@@ -212,7 +255,73 @@ texture = null
 normal_map = null
 h_frames = 1
 v_frames = 1
-_sections_unfolded = [ "Time" ]
+_sections_unfolded = [ "Process Material" ]
+
+[node name="AwwParticle" type="Particles2D" parent="." index="4"]
+
+emitting = false
+amount = 2
+lifetime = 0.5
+one_shot = false
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 7 )
+texture = ExtResource( 4 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Process Material", "Textures" ]
+
+[node name="CuteParticle" type="Particles2D" parent="." index="5"]
+
+emitting = false
+amount = 2
+lifetime = 0.5
+one_shot = false
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 7 )
+texture = ExtResource( 5 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Process Material", "Textures" ]
+
+[node name="HeartParticle" type="Particles2D" parent="." index="6"]
+
+emitting = false
+amount = 2
+lifetime = 0.5
+one_shot = false
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 7 )
+texture = ExtResource( 6 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Material", "Process Material", "Textures" ]
 
 [connection signal="area_entered" from="InteractArea" to="." method="_on_InteractArea_area_entered"]
 
