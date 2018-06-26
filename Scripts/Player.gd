@@ -31,14 +31,14 @@ func _physics_process(delta):
 	var front_vec = global_position+Vector2(collision.shape.extents.x+collision.position.x, 0)
 	var front_raycast = space_state.intersect_ray(
 		front_vec,
-		front_vec+Vector2(0, 12.1),
+		front_vec+Vector2(0, 12.15),
 		[self],
 		1
 	)
 	var back_vec = global_position+Vector2(-collision.shape.extents.x+collision.position.x, 0)
 	var back_raycast = space_state.intersect_ray(
 		back_vec,
-		back_vec+Vector2(0, 12.1),
+		back_vec+Vector2(0, 12.15),
 		[self],
 		1
 	)

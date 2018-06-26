@@ -237,7 +237,7 @@ shape = SubResource( 5 )
 
 [node name="SparkleParticle" type="Particles2D" parent="." index="3"]
 
-emitting = false
+emitting = true
 amount = 20
 lifetime = 0.5
 one_shot = false
@@ -259,7 +259,7 @@ _sections_unfolded = [ "Process Material" ]
 
 [node name="AwwParticle" type="Particles2D" parent="." index="4"]
 
-emitting = false
+emitting = true
 amount = 2
 lifetime = 0.5
 one_shot = false
@@ -281,7 +281,7 @@ _sections_unfolded = [ "Process Material", "Textures" ]
 
 [node name="CuteParticle" type="Particles2D" parent="." index="5"]
 
-emitting = false
+emitting = true
 amount = 2
 lifetime = 0.5
 one_shot = false
@@ -303,7 +303,7 @@ _sections_unfolded = [ "Process Material", "Textures" ]
 
 [node name="HeartParticle" type="Particles2D" parent="." index="6"]
 
-emitting = false
+emitting = true
 amount = 2
 lifetime = 0.5
 one_shot = false

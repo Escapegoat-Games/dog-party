@@ -163,7 +163,7 @@ hframes = 5
 frame = 19
 _sections_unfolded = [ "Animation", "Transform" ]
 
-[node name="Stair" type="Sprite" parent="." index="11"]
+[node name="StairR" type="Sprite" parent="." index="11"]
 
 position = Vector2( 40, 80 )
 texture = ExtResource( 1 )

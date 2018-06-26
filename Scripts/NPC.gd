@@ -27,6 +27,9 @@ func _ready():
 	icon.hide()
 	sprite_ani.play(idle_ani)
 	icon_ani.play("ActiveLR")
+	
+	toggle_particles(false)
+	randomize()
 
 func _process(delta):
 	
