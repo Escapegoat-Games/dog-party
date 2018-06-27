@@ -6,7 +6,7 @@ onready var sprite = $PlayerSprite
 onready var sprite_ani = $PlayerSprite/SpriteAnimation
 onready var collision = $CollisionShape2D
 
-var walk_speed = 50
+var walk_speed = 60
 var jump_speed = 3
 var y_velocity = 0
 var touching_ground = false
