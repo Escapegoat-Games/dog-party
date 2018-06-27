@@ -33,17 +33,17 @@ _sections_unfolded = [ "Cell", "Z Index" ]
 
 position = Vector2( 0, 56 )
 sprite_id = 0
-activation_chance = 0.001
+activation_chance = 0.003
 
 [node name="NPC2" parent="NPCs" index="1" instance=ExtResource( 2 )]
 
 position = Vector2( 200, -208 )
 sprite_id = 2
-activation_chance = 0.001
+activation_chance = 0.003
 
 [node name="NPC3" parent="NPCs" index="2" instance=ExtResource( 2 )]
 
 position = Vector2( -170, -304 )
-activation_chance = 0.001
+activation_chance = 0.003
 
 

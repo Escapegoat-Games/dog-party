@@ -14,13 +14,23 @@ void fragment() {
 	
     vec4 col = texture(SCREEN_TEXTURE, SCREEN_UV);
     
-	float gray = (col.r + col.g + col.b)/3.0 - (time_passed+3.0)/2.0;
-	float norm_time = clamp(round(10.0*time_passed/2.0) / 10.0, 0, 1);
+	// fix for trans
+	float working_time = time_passed;
+	if(time_passed > 2.0){
+		working_time = time_passed-2.0;
+	}
+	
+	float gray = (col.r + col.g + col.b)/3.0 - (working_time+3.0)/2.0;
+	float norm_time = clamp(round(10.0*working_time/2.0) / 10.0, 0, 1);
+	
+	if(time_passed < 2.0){
+		norm_time = 1.0 - norm_time;
+	}
 	
     COLOR = vec4(
-		((1.0-norm_time)*col.r+norm_time*gray)/2.0,
-		((1.0-norm_time)*col.g+norm_time*gray)/2.0,
-		((1.0-norm_time)*col.b+norm_time*gray)/2.0,
+		(norm_time*col.r+(1.0-norm_time)*gray)/2.0,
+		(norm_time*col.g+(1.0-norm_time)*gray)/2.0,
+		(norm_time*col.b+(1.0-norm_time)*gray)/2.0,
 		col.a
 	);
 }"
@@ -33,11 +43,11 @@ shader_param/time_passed = null
 
 [sub_resource type="Animation" id=3]
 
-length = 3.0
+length = 4.0
 loop = false
 step = 0.1
 
-[node name="FadeOutScreen" type="Node2D" index="0"]
+[node name="FadeTransScreen" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Material", "Transform" ]

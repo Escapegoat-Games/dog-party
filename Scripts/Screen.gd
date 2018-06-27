@@ -9,5 +9,6 @@ func _ready():
 
 func _process(delta):
 	if not screen_ani.is_playing():
+		ScreenHandler.ready_to_load = true
 		queue_free()
 		pass

@@ -1,3 +1,5 @@
+# Hacky shader fade script
+
 extends Sprite
 
 var time_passed = 0

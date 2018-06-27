@@ -7,14 +7,8 @@ enum GameState {
 }
 var game_state
 
-enum Screen {
-	TIME,
-	FADE_OUT,
-	
-}
-
 var player_points = 0
-var time_left = 10
+var time_left = 100
 
 # Levels and screens
 var levels = [
@@ -24,15 +18,9 @@ var levels = [
 ]
 var curr_level
 
-var screens = [
-	load("res://Scenes/Screens/TimeScreen.tscn"),
-	load("res://Scenes/Screens/FadeOutScreen.tscn"),
-]
-var curr_screen
-
 func _ready():
 	game_state = GameState.GAME
-	load_level(0)
+	load_level(1)
 
 func _process(delta):
 	if game_state == GameState.GAME:
@@ -40,12 +28,12 @@ func _process(delta):
 		
 		if time_left <= 0:
 			#unload_level()
-			load_screen(Screen.FADE_OUT)
+			ScreenHandler.load_queue = [
+				ScreenHandler.Screen.TIME,
+				ScreenHandler.Screen.FADE_TRANS,
+			]
 			game_state = GameState.TITLE
 
-func load_screen(n):
-	curr_screen = screens[n].instance()
-	get_node("/root/Game/HUD/Screen").add_child(curr_screen)
 
 func load_level(n):
 	curr_level = levels[n].instance()
