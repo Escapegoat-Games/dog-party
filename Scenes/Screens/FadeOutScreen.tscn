@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/Screen.gd" type="Script" id=1]
+[ext_resource path="res://Textures/screen_wide.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Blank.gd" type="Script" id=3]
+
+[sub_resource type="Shader" id=1]
+
+code = "shader_type canvas_item;
+
+uniform float time_passed;
+
+void fragment() {
+	
+    vec4 col = texture(SCREEN_TEXTURE, SCREEN_UV);
+    
+	float gray = (col.r + col.g + col.b)/3.0 - time_passed/2.0;
+	float norm_time = clamp(round(10.0*time_passed/2.0) / 10.0, 0, 1);
+	
+    COLOR = vec4(
+		((1.0-norm_time)*col.r+norm_time*gray)/2.0,
+		((1.0-norm_time)*col.g+norm_time*gray)/2.0,
+		((1.0-norm_time)*col.b+norm_time*gray)/2.0,
+		col.a
+	);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+
+render_priority = 0
+shader = SubResource( 1 )
+shader_param/time_passed = null
+
+[sub_resource type="Animation" id=3]
+
+length = 3.0
+loop = false
+step = 0.1
+
+[node name="FadeOutScreen" type="Node2D" index="0"]
+
+script = ExtResource( 1 )
+_sections_unfolded = [ "Material", "Transform" ]
+
+[node name="Blank" type="Sprite" parent="." index="0"]
+
+material = SubResource( 2 )
+texture = ExtResource( 2 )
+hframes = 3
+frame = 2
+region_rect = Rect2( 6, 5, 11, 14 )
+script = ExtResource( 3 )
+_sections_unfolded = [ "Animation", "Material" ]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/PlayScreen = SubResource( 3 )
+blend_times = [  ]
+
+

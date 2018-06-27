@@ -70,14 +70,14 @@ func handle_controls():
 		state = State.IDLE
 	
 	# walking
-	if Input.is_action_pressed("move_left"):
+	if Input.is_action_pressed("move_left") and GameManager.game_state == GameManager.GameState.GAME:
 		move_and_slide(Vector2(-walk_speed, 0))
 		sprite.flip_h = false
 		if touching_ground:
 			state = State.WALK
 		else:
 			state = State.JUMP
-	elif Input.is_action_pressed("move_right"):
+	elif Input.is_action_pressed("move_right") and GameManager.game_state == GameManager.GameState.GAME:
 		move_and_slide(Vector2(walk_speed, 0))
 		sprite.flip_h = true
 		if touching_ground:
@@ -86,7 +86,7 @@ func handle_controls():
 			state = State.JUMP
 	
 	# jump
-	if Input.is_action_pressed("jump") and touching_ground:
+	if Input.is_action_pressed("jump") and touching_ground and GameManager.game_state == GameManager.GameState.GAME:
 		y_velocity = -jump_speed
 		state = State.JUMP
 

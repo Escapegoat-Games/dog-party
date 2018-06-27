@@ -43,7 +43,7 @@ func _process(delta):
 		active_time -= delta
 		
 		# player beg
-		if is_player_present:
+		if is_player_present and GameManager.game_state == GameManager.GameState.GAME:
 			if player_beg_phase == 0 && Input.is_action_just_pressed("move_right"):
 				player_beg_phase = 1
 				player_beg_cooldown = 1

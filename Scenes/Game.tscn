@@ -79,7 +79,6 @@ distance_field = false
 
 [node name="Player" type="KinematicBody2D" parent="." index="0"]
 
-editor/display_folded = true
 position = Vector2( 60, 60 )
 input_pickable = false
 collision_layer = 1
@@ -161,7 +160,6 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="HUD" type="CanvasLayer" parent="." index="1"]
 
-editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -171,6 +169,7 @@ script = ExtResource( 3 )
 
 [node name="GUI" type="MarginContainer" parent="HUD" index="0"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -189,6 +188,7 @@ _sections_unfolded = [ "Margin" ]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/GUI" index="0"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -271,5 +271,22 @@ occluder_light_mask = 1
 format = 1
 tile_data = PoolIntArray( 0, 0, 0, 1, 5, 0, 2, 5, 0, 3, 3, 0 )
 _sections_unfolded = [ "Cell", "Z Index" ]
+
+[node name="Screen" type="Control" parent="HUD" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 60.0
+margin_top = 60.0
+margin_right = 100.0
+margin_bottom = 100.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
 
 
