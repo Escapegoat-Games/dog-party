@@ -12,7 +12,6 @@ onready var particles3 = $CuteParticle
 onready var particles4 = $HeartParticle
 
 export(int) var sprite_id
-export(float) var activation_chance
 var idle_ani
 
 var is_player_present = false
@@ -32,12 +31,6 @@ func _ready():
 	randomize()
 
 func _process(delta):
-	
-	# control active icons
-	if not is_active && randf() < activation_chance:
-		is_active = true
-		active_time = rand_range(5, 10)
-		icon.show()
 	
 	if is_active:
 		active_time -= delta
@@ -63,12 +56,19 @@ func _process(delta):
 			is_active = false
 			toggle_particles(false)
 			icon.hide()
+			
+			get_node("../").activate_npc()
 
 func toggle_particles(b):
 	particles.emitting = b
 	particles2.emitting = b
 	particles3.emitting = b
 	particles4.emitting = b
+
+func activate():
+	is_active = true
+	active_time = rand_range(5, 10)
+	icon.show()
 
 func id2name(id):
 	return String(id/10) + String(id%10)

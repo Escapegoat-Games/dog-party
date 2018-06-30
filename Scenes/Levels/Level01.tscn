@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Textures/bg_tiles.tres" type="TileSet" id=1]
-[ext_resource path="res://Instances/NPC.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/NPCManager.gd" type="Script" id=2]
+[ext_resource path="res://Instances/NPC.tscn" type="PackedScene" id=3]
 
 [node name="Level01" type="Node2D" index="0"]
 
@@ -30,19 +31,20 @@ _sections_unfolded = [ "Cell", "Z Index" ]
 [node name="NPCs" type="Node2D" parent="." index="1"]
 
 editor/display_folded = true
+script = ExtResource( 2 )
 
-[node name="NPC" parent="NPCs" index="0" instance=ExtResource( 2 )]
+[node name="NPC" parent="NPCs" index="0" instance=ExtResource( 3 )]
 
 position = Vector2( 0, 56 )
 sprite_id = 0
 activation_chance = 0.003
 
-[node name="NPC2" parent="NPCs" index="1" instance=ExtResource( 2 )]
+[node name="NPC2" parent="NPCs" index="1" instance=ExtResource( 3 )]
 
 position = Vector2( -140, 56 )
 activation_chance = 0.003
 
-[node name="NPC3" parent="NPCs" index="2" instance=ExtResource( 2 )]
+[node name="NPC3" parent="NPCs" index="2" instance=ExtResource( 3 )]
 
 position = Vector2( -35, -88 )
 sprite_id = 2

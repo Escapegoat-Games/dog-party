@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Textures/bg_tiles.tres" type="TileSet" id=1]
-[ext_resource path="res://Instances/NPC.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/NPCManager.gd" type="Script" id=2]
+[ext_resource path="res://Instances/NPC.tscn" type="PackedScene" id=3]
 
-[node name="Level02" type="Node2D" index="0"]
+[node name="Level02" type="Node2D"]
 
 [node name="LevelTiles" type="TileMap" parent="." index="0"]
 
@@ -29,26 +30,24 @@ _sections_unfolded = [ "Cell", "Z Index" ]
 
 [node name="NPCs" type="Node2D" parent="." index="1"]
 
-[node name="NPC" parent="NPCs" index="0" instance=ExtResource( 2 )]
+script = ExtResource( 2 )
+
+[node name="NPC" parent="NPCs" index="0" instance=ExtResource( 3 )]
 
 position = Vector2( -100, 128 )
-activation_chance = 0.003
 
-[node name="NPC2" parent="NPCs" index="1" instance=ExtResource( 2 )]
+[node name="NPC2" parent="NPCs" index="1" instance=ExtResource( 3 )]
 
 position = Vector2( -350, 80 )
-activation_chance = 0.003
 
-[node name="NPC3" parent="NPCs" index="2" instance=ExtResource( 2 )]
+[node name="NPC3" parent="NPCs" index="2" instance=ExtResource( 3 )]
 
 position = Vector2( -130, -63 )
 sprite_id = 2
-activation_chance = 0.003
 
-[node name="NPC4" parent="NPCs" index="3" instance=ExtResource( 2 )]
+[node name="NPC4" parent="NPCs" index="3" instance=ExtResource( 3 )]
 
 position = Vector2( -380, 8 )
 sprite_id = 0
-activation_chance = 0.003
 
 
