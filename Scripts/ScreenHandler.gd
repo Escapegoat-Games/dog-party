@@ -5,6 +5,7 @@ enum Screen {
 	FADE_OUT,
 	FADE_IN,
 	FADE_TRANS,
+	SCORE,
 }
 
 var screens = [
@@ -12,6 +13,7 @@ var screens = [
 	load("res://Scenes/Screens/FadeOutScreen.tscn"),
 	load("res://Scenes/Screens/FadeInScreen.tscn"),
 	load("res://Scenes/Screens/FadeTransScreen.tscn"),
+	load("res://Scenes/Screens/ScoreScreen.tscn"),
 ]
 var curr_screen
 

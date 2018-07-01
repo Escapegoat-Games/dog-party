@@ -67,7 +67,7 @@ func toggle_particles(b):
 
 func activate():
 	is_active = true
-	active_time = rand_range(5, 10)
+	active_time = rand_range(10, 20)
 	icon.show()
 
 func id2name(id):
