@@ -19,8 +19,7 @@ var levels = [
 var curr_level
 
 func _ready():
-	game_state = GameState.GAME
-	load_level(1)
+	start_title()
 
 func _process(delta):
 	if game_state == GameState.GAME:
@@ -32,9 +31,25 @@ func _process(delta):
 				ScreenHandler.Screen.TIME,
 				ScreenHandler.Screen.SCORE,
 				ScreenHandler.Screen.FADE_TRANS,
+				ScreenHandler.Screen.TITLE
 			]
 			game_state = GameState.TITLE
 
+func start_title():
+	ScreenHandler.load_queue = [
+		ScreenHandler.Screen.TIME,
+		ScreenHandler.Screen.TITLE
+	]
+	game_state = GameState.TITLE
+func start_game():
+	
+	ScreenHandler.load_queue = [
+		#ScreenHandler.Screen.FADE_TRANS,
+		ScreenHandler.Screen.GAME
+	]
+	
+	game_state = GameState.GAME
+	load_level(1)	# load random level later
 
 func load_level(n):
 	curr_level = levels[n].instance()
