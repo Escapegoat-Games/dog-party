@@ -9,6 +9,7 @@ enum Screen {
 	
 	TITLE,
 	GAME,
+	BLANK,
 }
 
 
@@ -24,6 +25,7 @@ var curr_screen
 var main_scenes = [
 	load("res://Scenes/TitleScreen.tscn"),
 	load("res://Scenes/Game.tscn"),
+	load("res://Scenes/Blank.tscn"),
 ]
 var curr_scene
 
@@ -38,11 +40,15 @@ func _process(delta):
 			load_screen(obj)
 			ready_to_load = false
 		else:
-			if curr_scene != null:
-				curr_scene.queue_free()
+			#free_current_scene()
 			curr_scene = main_scenes[obj-len(screens)].instance()
 			get_node("/root/Main/Current").add_child(curr_scene)
 
 func load_screen(n):
 	curr_screen = screens[n].instance()
 	get_node("/root/Main/CanvasLayer/Screen").add_child(curr_screen)
+
+func free_current_scene():
+	print(curr_scene)
+	if curr_scene != null:
+		curr_scene.queue_free()
