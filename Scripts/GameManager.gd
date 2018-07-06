@@ -30,21 +30,20 @@ func _process(delta):
 			ScreenHandler.load_queue = [
 				ScreenHandler.Screen.TIME,
 				ScreenHandler.Screen.SCORE,
-				ScreenHandler.Screen.FADE_TRANS,
+				ScreenHandler.Screen.FADE_OUT,
 				ScreenHandler.Screen.TITLE
 			]
 			game_state = GameState.TITLE
+			reset_game()
 
 func start_title():
 	ScreenHandler.load_queue = [
-		ScreenHandler.Screen.TIME,
-		ScreenHandler.Screen.TITLE
+		ScreenHandler.Screen.TITLE,
 	]
 	game_state = GameState.TITLE
 func start_game():
-	
 	ScreenHandler.load_queue = [
-		#ScreenHandler.Screen.FADE_TRANS,
+		ScreenHandler.Screen.FADE_OUT,
 		ScreenHandler.Screen.GAME
 	]
 	
@@ -56,6 +55,10 @@ func load_level(n):
 	add_child(curr_level)
 func unload_level():
 	remove_child(curr_level)
+
+func reset_game():
+	player_points = 0
+	time_left = 10
 	
 func num2label(p):
 	return  String((p/1000) % 10) + String((p/100) % 10) + String((p/10) % 10) + String(p % 10)

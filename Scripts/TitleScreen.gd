@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 onready var labels = ($Labels).get_children()
 onready var indicator = $Labels/Indicator

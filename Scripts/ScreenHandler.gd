@@ -22,9 +22,10 @@ var screens = [
 var curr_screen
 
 var main_scenes = [
-	"res://Scenes/TitleScreen.tscn",
-	"res://Scenes/Game.tscn",
+	load("res://Scenes/TitleScreen.tscn"),
+	load("res://Scenes/Game.tscn"),
 ]
+var curr_scene
 
 var ready_to_load = true
 var load_queue = []
@@ -37,8 +38,11 @@ func _process(delta):
 			load_screen(obj)
 			ready_to_load = false
 		else:
-			get_node("/root/Main").get_tree().change_scene(main_scenes[obj-len(screens)])
+			if curr_scene != null:
+				curr_scene.queue_free()
+			curr_scene = main_scenes[obj-len(screens)].instance()
+			get_node("/root/Main/Current").add_child(curr_scene)
 
 func load_screen(n):
 	curr_screen = screens[n].instance()
-	get_node("/root/Main/Screen").add_child(curr_screen)
+	get_node("/root/Main/CanvasLayer/Screen").add_child(curr_screen)
