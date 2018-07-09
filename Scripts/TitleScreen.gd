@@ -1,3 +1,5 @@
+# Title screen control
+
 extends CanvasLayer
 
 onready var labels = ($Labels).get_children()

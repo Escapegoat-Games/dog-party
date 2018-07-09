@@ -20,7 +20,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2, 3, 3.2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 150 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, -150 ) ]
+"values": [ Vector2( 4, 150 ), Vector2( 4, 0 ), Vector2( 4, 0 ), Vector2( 4, -150 ) ]
 }
 
 [node name="TimeScreen" type="Node2D" index="0"]
@@ -30,7 +30,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Score" type="Sprite" parent="." index="0"]
 
-position = Vector2( 0, 150 )
+position = Vector2( 4, -150 )
 texture = ExtResource( 2 )
 vframes = 2
 hframes = 3

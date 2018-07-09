@@ -19,6 +19,7 @@ var levels = [
 var curr_level
 
 func _ready():
+	randomize()
 	start_title()
 
 func _process(delta):
@@ -26,15 +27,14 @@ func _process(delta):
 		time_left -= delta
 		
 		if time_left <= 0:
-			#unload_level()
+			# unload_level
+			ScreenHandler.ready_to_load = true
 			ScreenHandler.load_queue = [
 				ScreenHandler.Scene.TIME,
 				ScreenHandler.Scene.SCORE,
 				ScreenHandler.Scene.FADE_OUT,
 				ScreenHandler.Scene.TITLE
 			]
-			game_state = GameState.TITLE
-			reset_game()
 
 func start_title():
 	ScreenHandler.load_queue = [
@@ -48,7 +48,7 @@ func start_game():
 	]
 	
 	game_state = GameState.GAME
-	load_level(1)	# load random level later
+	load_level(int(rand_range(0, len(levels))))	# load random level later
 
 func load_level(n):
 	curr_level = levels[n].instance()

@@ -1,3 +1,5 @@
+# Handles Scene and Screen loading
+
 extends Node
 
 enum Scene {
@@ -58,10 +60,10 @@ func _process(delta):
 	# Load next screen in queue
 	if ready_to_load and len(load_queue) > 0:
 		var obj = load_queue.pop_front()
-		load_screen(obj)
+		load_scene(obj)
 		ready_to_load = false
 
-func load_screen(n):
+func load_scene(n):
 	match type_list[n]:
 		SceneType.SCREEN:
 			curr_screen = scenes[n].instance()
@@ -69,8 +71,14 @@ func load_screen(n):
 		SceneType.MAIN:
 			curr_main_scene = scenes[n].instance()
 			get_node("/root/Main/Current").add_child(curr_main_scene)
+			
+			match curr_main_scene:
+				Scene.TITLE:
+					GameManager.game_state = GameManager.GameState.TITLE
+					GameManager.reset_game()
+				Scene.GAME:
+					GameManager.game_state = GameManager.GameState.GAME
 
 func free_current_scene():
-	print(curr_screen)
-	if curr_screen != null:
-		curr_screen.queue_free()
+	if curr_main_scene != null:
+		curr_main_scene.queue_free()
