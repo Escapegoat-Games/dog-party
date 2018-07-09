@@ -16,6 +16,10 @@ func _ready():
 		l.get_font("font").create_from_fnt("res://Font/custom.fnt")
 
 func _process(delta):
+	if GameManager.game_state != GameManager.GameState.TITLE:
+		return
+	
+	
 	if Input.is_action_just_pressed("ui_up"):
 		arrow_state -= 1
 	elif Input.is_action_just_pressed("ui_down"):
@@ -31,4 +35,5 @@ func _process(delta):
 
 func handle_title():
 	if arrow_state == ArrowState.START:
+		ScreenHandler.ready_to_load = true
 		GameManager.start_game()

@@ -28,23 +28,23 @@ func _process(delta):
 		if time_left <= 0:
 			#unload_level()
 			ScreenHandler.load_queue = [
-				ScreenHandler.Screen.TIME,
-				ScreenHandler.Screen.SCORE,
-				ScreenHandler.Screen.FADE_OUT,
-				ScreenHandler.Screen.TITLE
+				ScreenHandler.Scene.TIME,
+				ScreenHandler.Scene.SCORE,
+				ScreenHandler.Scene.FADE_OUT,
+				ScreenHandler.Scene.TITLE
 			]
 			game_state = GameState.TITLE
 			reset_game()
 
 func start_title():
 	ScreenHandler.load_queue = [
-		ScreenHandler.Screen.TITLE,
+		ScreenHandler.Scene.TITLE,
 	]
 	game_state = GameState.TITLE
 func start_game():
 	ScreenHandler.load_queue = [
-		ScreenHandler.Screen.FADE_OUT,
-		ScreenHandler.Screen.GAME
+		ScreenHandler.Scene.FADE_OUT,
+		ScreenHandler.Scene.GAME
 	]
 	
 	game_state = GameState.GAME
