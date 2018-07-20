@@ -8,7 +8,7 @@ enum GameState {
 var game_state
 
 var player_points = 0
-var time_left = 10
+var time_left = 100
 
 # Levels and screens
 var levels = [
@@ -60,7 +60,8 @@ func unload_level():
 
 func reset_game():
 	player_points = 0
-	time_left = 10
+	time_left = 100
+	unload_level()
 	
 func num2label(p):
 	return  String((p/1000) % 10) + String((p/100) % 10) + String((p/10) % 10) + String(p % 10)

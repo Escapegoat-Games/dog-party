@@ -18,7 +18,7 @@ func _ready():
 		text += "Great work."
 	elif GameManager.player_points >= 10:
 		text += "Good try!"
-	elif GameManager.player_points == 0:
+	elif GameManager.player_points >= 0:
 		text += "Uhhh...hm."
 	elif GameManager.player_points < 0:
 		text += "Cheater"
