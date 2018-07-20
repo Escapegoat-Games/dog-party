@@ -79,6 +79,5 @@ func load_scene(n):
 				Scene.GAME:
 					GameManager.game_state = GameManager.GameState.GAME
 
-func free_current_scene():
-	if curr_main_scene != null:
-		curr_main_scene.queue_free()
+func free_current_main_scene():
+	curr_main_scene.queue_free()

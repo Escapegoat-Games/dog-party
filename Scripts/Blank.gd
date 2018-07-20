@@ -10,5 +10,5 @@ func _process(delta):
 	self.material.set_shader_param("time_passed", time_passed)
 	
 	if time_passed > 2 and not scene_removed:
-		ScreenHandler.free_current_scene()
+		ScreenHandler.free_current_main_scene()
 		scene_removed = true

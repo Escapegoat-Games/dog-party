@@ -35,6 +35,7 @@ func _process(delta):
 				ScreenHandler.Scene.FADE_OUT,
 				ScreenHandler.Scene.TITLE
 			]
+			game_state = GameState.TITLE
 
 func start_title():
 	ScreenHandler.load_queue = [
@@ -42,13 +43,14 @@ func start_title():
 	]
 	game_state = GameState.TITLE
 func start_game():
+	reset_game()
 	ScreenHandler.load_queue = [
 		ScreenHandler.Scene.FADE_OUT,
 		ScreenHandler.Scene.GAME
 	]
 	
 	game_state = GameState.GAME
-	load_level(int(rand_range(0, len(levels))))	# load random level later
+	load_level(int(rand_range(0, len(levels))))	# load random level
 
 func load_level(n):
 	curr_level = levels[n].instance()
