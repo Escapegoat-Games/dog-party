@@ -7,12 +7,15 @@ onready var sprite_ani = $PlayerSprite/SpriteAnimation
 onready var collision = $CollisionShape2D
 
 var walk_speed = 60
-var jump_speed = 3
+var jump_speed = 2.5
 var y_velocity = 0
 var touching_ground = false
+var touching_ceiling = false
 var land_cooldown
 
-const gravity = 0.1
+var jump_timer = 0
+
+var gravity = 0.1
 
 enum State {
 	IDLE,
@@ -44,6 +47,21 @@ func _physics_process(delta):
 	)
 	touching_ground = front_raycast.size() > 0 or back_raycast.size() > 0
 	
+	# raycast for ceiling
+	front_raycast = space_state.intersect_ray(
+		front_vec,
+		front_vec+Vector2(0, -10),
+		[self],
+		1
+	)
+	back_raycast = space_state.intersect_ray(
+		back_vec,
+		back_vec+Vector2(0, -10),
+		[self],
+		1
+	)
+	touching_ceiling = front_raycast.size() > 0 or back_raycast.size() > 0
+	
 	# apply physics
 	move_and_collide(Vector2(0, y_velocity))
 	
@@ -51,6 +69,9 @@ func _physics_process(delta):
 		y_velocity = 0
 	else:
 		y_velocity += gravity
+	
+	if touching_ceiling and y_velocity < 0:
+		y_velocity = 1
 	
 	# pixel perfect?
 	#sprite.global_position = Vector2(int(global_position.x), int(global_position.y))
@@ -65,19 +86,23 @@ func _process(delta):
 	handle_animation()
 	
 func handle_controls():
+	
+	if not GameManager.game_state == GameManager.GameState.GAME:
+		return
+	
 	# set up default idle state
 	if touching_ground:
 		state = State.IDLE
 	
 	# walking
-	if Input.is_action_pressed("move_left") and GameManager.game_state == GameManager.GameState.GAME:
+	if Input.is_action_pressed("move_left"):
 		move_and_slide(Vector2(-walk_speed, 0))
 		sprite.flip_h = false
 		if touching_ground:
 			state = State.WALK
 		else:
 			state = State.JUMP
-	elif Input.is_action_pressed("move_right") and GameManager.game_state == GameManager.GameState.GAME:
+	elif Input.is_action_pressed("move_right"):
 		move_and_slide(Vector2(walk_speed, 0))
 		sprite.flip_h = true
 		if touching_ground:
@@ -86,9 +111,17 @@ func handle_controls():
 			state = State.JUMP
 	
 	# jump
-	if Input.is_action_pressed("jump") and touching_ground and GameManager.game_state == GameManager.GameState.GAME:
+	if Input.is_action_pressed("jump") and touching_ground:
 		y_velocity = -jump_speed
 		state = State.JUMP
+	
+	# variable jump
+	if Input.is_action_pressed("jump"):
+		gravity -= 0.01
+		gravity = clamp(gravity, 0.05, 0.1)
+	if Input.is_action_just_released("jump") or y_velocity > 0:
+		gravity = 0.1
+	
 
 func handle_animation():
 	
